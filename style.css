@@ -1,0 +1,672 @@
+/* General */
+
+*
+{
+    box-sizing: border-box;
+}
+
+body
+{
+    background-color: #080808;
+    color: #EEEEEE;
+    font-family: Arial, sans-serif;
+    margin: 0;
+}
+
+/* Header */
+
+header
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0;
+    padding: 18px 8%;
+}
+
+.wordmark
+{
+    color: #EEEEEE;
+    font-size: 26px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+header span
+{
+    color: #777777;
+    font-size: 12px;
+    text-align: right;
+    margin-left: auto;
+}
+
+/* Main content */
+
+main
+{
+    max-width: 1000px;
+    margin: 18px auto 80px;
+    padding: 0 25px;
+}
+
+/* Introduction */
+
+.introduction
+{
+    margin-bottom: 18px;
+}
+
+.introduction h1
+{
+    font-size: clamp(28px, 4vw, 42px);
+    margin: 0 0 5px;
+}
+
+.introduction p
+{
+    color: #AAAAAA;
+    font-size: 15px;
+    margin: 0;
+}
+
+/* Small labels */
+
+.eyebrow
+{
+    color: #BE102F;
+    font-size: 11px;
+    letter-spacing: 2px;
+    margin: 0 0 12px;
+}
+
+/* Gameplay and download */
+
+.game
+{
+    margin-bottom: 8px;
+}
+
+.game-image
+{
+    display: block;
+    width: 100%;
+    aspect-ratio: 3 / 1;
+    border-radius: 12px;
+    object-fit: cover;
+    background-color: #202020;
+}
+
+.download-button
+{
+    display: block;
+    width: 100%;
+    margin: 8px 0 0;
+    padding: 12px 22px;
+    border-radius: 12px;
+    background-color: #BE102F;
+    color: #FFFFFF;
+    border: none;
+    text-align: center;
+    font-size: 13px;
+    line-height: 1.5;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.download-button strong
+{
+    display: block;
+    font-size: 19px;
+    margin-bottom: 3px;
+}
+
+.download-button span
+{
+    display: block;
+    font-size: 12px;
+}
+
+.download-button:hover
+{
+    background-color: #D52A49;
+}
+
+/* Devlog and community entry points */
+
+.feature-links
+{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    margin-bottom: 85px;
+}
+
+.feature-card
+{
+    min-width: 0;
+    background-color: #111111;
+    border: 1px solid #292929;
+    padding: 22px;
+}
+
+.feature-card h2
+{
+    font-size: 25px;
+    margin: 8px 0 10px;
+}
+
+.feature-card p:not(.eyebrow)
+{
+    color: #AAAAAA;
+    font-size: 13px;
+    line-height: 1.6;
+    min-height: 42px;
+}
+
+.feature-card a
+{
+    display: inline-block;
+    color: #BE102F;
+    text-decoration: none;
+    font-size: 13px;
+    margin-top: 8px;
+}
+
+.feature-card a:hover
+{
+    color: #D52A49;
+}
+
+/* Community features */
+
+.community
+{
+    margin-bottom: 90px;
+    scroll-margin-top: 25px;
+}
+
+.community-heading
+{
+    margin-bottom: 25px;
+}
+
+.community-heading h2
+{
+    font-size: 30px;
+    margin: 8px 0;
+}
+
+.community-grid
+{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    align-items: stretch;
+}
+
+.community-card
+{
+    background-color: #111111;
+    border: 1px solid #292929;
+    padding: 22px;
+    min-width: 0;
+}
+
+.card-topline,
+.results-heading,
+.answers-heading
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+}
+
+.card-label,
+.question-count,
+.poll-status
+{
+    color: #888888;
+    font-size: 10px;
+    letter-spacing: 1.4px;
+}
+
+.poll-status
+{
+    color: #BE102F;
+}
+
+.community-card h3
+{
+    font-size: 21px;
+    line-height: 1.35;
+    margin: 24px 0 10px;
+}
+
+.question-subtext
+{
+    color: #888888;
+    font-size: 13px;
+    line-height: 1.5;
+    min-height: 20px;
+}
+
+#answer-input
+{
+    width: 100%;
+    resize: vertical;
+    min-height: 85px;
+    background: #080808;
+    color: #EEEEEE;
+    border: 1px solid #333333;
+    padding: 12px;
+    font: inherit;
+    font-size: 13px;
+    margin-top: 12px;
+}
+
+#answer-input:focus
+{
+    outline: 1px solid #BE102F;
+    border-color: #BE102F;
+}
+
+.sharing-choice
+{
+    display: grid;
+    gap: 9px;
+    margin-top: 15px;
+}
+
+.sharing-title
+{
+    color: #AAAAAA;
+    font-size: 12px;
+    margin-bottom: 2px;
+}
+
+.sharing-choice label
+{
+    color: #BBBBBB;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+input[type="radio"]
+{
+    accent-color: #BE102F;
+}
+
+.question-actions
+{
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-top: 8px;
+}
+
+.community-card button
+{
+    background-color: #BE102F;
+    color: #FFFFFF;
+    border: none;
+    padding: 12px 18px;
+    font-size: 13px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.community-card button:hover
+{
+    background-color: #D52A49;
+}
+
+.community-card button:disabled
+{
+    background-color: #555555;
+    cursor: not-allowed;
+}
+
+.text-button
+{
+    background: none !important;
+    color: #AAAAAA !important;
+    padding: 12px 4px !important;
+}
+
+.text-button:hover
+{
+    background: none !important;
+    color: #FFFFFF !important;
+}
+
+.form-message
+{
+    color: #BE8A95;
+    font-size: 12px;
+    min-height: 16px;
+    line-height: 1.4;
+}
+
+.tiny-note
+{
+    color: #666666;
+    font-size: 10px;
+    line-height: 1.5;
+    margin-top: 18px;
+}
+
+.poll-options
+{
+    display: grid;
+    gap: 9px;
+    margin-top: 24px;
+}
+
+.poll-option
+{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px;
+    border: 1px solid #303030;
+    color: #CCCCCC;
+    font-size: 13px;
+    cursor: pointer;
+    transition: border-color 0.2s, background-color 0.2s;
+}
+
+.poll-option:hover
+{
+    border-color: #777777;
+    background-color: #181818;
+}
+
+.poll-option:has(input:checked)
+{
+    border-color: #BE102F;
+    background-color: #1C1013;
+}
+
+.poll-option input
+{
+    accent-color: #BE102F;
+}
+
+.poll-results
+{
+    border-top: 1px solid #303030;
+    margin-top: 24px;
+    padding-top: 18px;
+}
+
+.results-heading
+{
+    color: #AAAAAA;
+    font-size: 11px;
+    margin-bottom: 15px;
+}
+
+.result-row
+{
+    margin: 13px 0;
+}
+
+.result-label
+{
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    color: #BBBBBB;
+    font-size: 12px;
+    margin-bottom: 6px;
+}
+
+.result-track
+{
+    height: 6px;
+    background: #303030;
+    overflow: hidden;
+}
+
+.result-fill
+{
+    height: 100%;
+    background: #BE102F;
+    transition: width 0.3s;
+}
+
+.answers-section
+{
+    margin-top: 60px;
+}
+
+.answers-heading
+{
+    margin-bottom: 18px;
+}
+
+.answers-heading h3
+{
+    font-size: 23px;
+    margin: 0;
+}
+
+.answer-total
+{
+    color: #777777;
+    font-size: 11px;
+}
+
+.community-answers
+{
+    display: grid;
+    gap: 10px;
+}
+
+.answer-item
+{
+    background: #111111;
+    border-left: 2px solid #BE102F;
+    padding: 15px 18px;
+}
+
+.answer-item p
+{
+    color: #DDDDDD;
+    font-size: 13px;
+    line-height: 1.6;
+    margin: 0;
+    overflow-wrap: anywhere;
+}
+
+.answer-item span
+{
+    color: #666666;
+    font-size: 10px;
+    display: block;
+    margin-top: 8px;
+}
+
+.empty-answers
+{
+    color: #777777;
+    font-size: 13px;
+    padding: 18px 0;
+}
+
+.contribution-card
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 25px;
+    border-top: 1px solid #292929;
+    border-bottom: 1px solid #292929;
+    margin-top: 55px;
+    padding: 25px 0;
+}
+
+.contribution-card h3
+{
+    font-size: 21px;
+    margin: 0 0 8px;
+}
+
+.contribution-card p
+{
+    color: #999999;
+    font-size: 13px;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.contribution-note
+{
+    max-width: 230px;
+    color: #666666 !important;
+    font-size: 11px !important;
+}
+
+/* Accessibility */
+
+.sr-only
+{
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Footer */
+
+footer
+{
+    border-top: 1px solid #292929;
+    padding: 25px 8%;
+    color: #777777;
+    font-size: 12px;
+}
+
+/* Mobile */
+
+@media (max-width: 700px)
+{
+    .community-grid
+    {
+        grid-template-columns: 1fr;
+    }
+
+    .contribution-card
+    {
+        display: block;
+    }
+
+    .contribution-note
+    {
+        margin-top: 18px !important;
+    }
+}
+
+@media (max-width: 600px)
+{
+    header
+    {
+        padding: 16px 20px;
+    }
+
+    .wordmark
+    {
+        font-size: 22px;
+    }
+
+    .game-image
+    {
+        aspect-ratio: 16 / 9;
+    }
+
+    main
+    {
+        margin: 25px auto 60px;
+        padding: 0 18px;
+    }
+
+    .download-button
+    {
+        padding: 15px;
+        font-size: 12px;
+    }
+
+    .download-button strong
+    {
+        font-size: 15px;
+    }
+
+    .feature-links
+    {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        margin-bottom: 65px;
+    }
+
+    .feature-card
+    {
+        padding: 18px;
+    }
+
+    .feature-card p:not(.eyebrow)
+    {
+        min-height: 0;
+    }
+
+    .community-heading h2
+    {
+        font-size: 26px;
+    }
+
+    .community-card
+    {
+        padding: 18px;
+    }
+}
+
+/* Rotating engagement */
+[hidden] { display: none !important; }
+.community { margin: 0 0 20px; background: #111111; border: 1px solid #292929; border-radius: 12px; padding: 16px; }
+.rotation-header { color: #AAAAAA; font-size: 13px; }
+.rotation-controls { display: flex; gap: 6px; }
+.rotation-controls button { background: #222; color: #eee; border: 1px solid #333; border-radius: 5px; padding: 7px 10px; cursor: pointer; }
+.rotation-stage { min-height: 360px; }
+.rotation-stage .community-card { border: 0; padding: 14px 0; animation: reveal .25s ease; }
+.rotation-stage h3 { margin-top: 12px; }
+.rotation-track { height: 3px; background: #333; border-radius: 4px; overflow: hidden; }
+#rotation-progress { height: 100%; width: 0; background: #BE102F; }
+.voice-card input, .voice-card audio { display: block; max-width: 100%; margin: 16px 0; }
+.devlog .feature-card { border-radius: 12px; }
+@keyframes reveal { from { opacity: 0; transform: translateX(8px); } to { opacity: 1; transform: translateX(0); } }
+@media (prefers-reduced-motion: reduce) { .rotation-stage .community-card { animation: none; } }
+
+/* Keep the remaining navigation arrows on the right. */
+.rotation-header { position: absolute; top: 12px; right: 16px; justify-content: flex-end; }
+.community { position: relative; }
+.rotation-stage .community-card { padding-top: 0; }
+.rotation-stage .community-card > :first-child { margin-top: 0; padding-right: 86px; }
+
+/* Devlog */
+.log-back { display: inline-block; color: #AAAAAA; text-decoration: none; margin-bottom: 24px; font-size: 14px; }
+.log-back:hover { color: #EEEEEE; }
+.log-post { background: #111111; border: 1px solid #292929; border-radius: 12px; padding: 22px; margin: 16px 0; overflow-wrap: anywhere; }
+.log-post h2 { margin: 8px 0 16px; font-size: 25px; }
+.log-meta, .feature-card p.log-meta { color: #999999; font-size: 12px; min-height: 0; margin: 0; }
+.log-body { color: #CCCCCC; line-height: 1.7; white-space: pre-wrap; }
+.log-post img { display: block; width: 100%; height: auto; border-radius: 8px; margin-top: 16px; }
+#latest-title { margin-bottom: 6px; }

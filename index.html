@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ju-ninja</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <a class="wordmark" href="index.html">ju-ninja</a>
+        <span>somewhere on the internet</span>
+    </header>
+
+    <main>
+
+        <section class="introduction">
+            <h1>we make game bruddah</h1>
+            <p>actually please play I'm so desprate</p>
+        </section>
+
+        <!-- Gameplay and Download -->
+        <section class="game">
+            <img class="game-image" src="images/gameplay.png" alt="Ju-Ninja gameplay">
+
+            <button class="download-button" type="button">
+                <strong>DOWNLOAD THE GAME ↓</strong>
+                <span>current build · free · very much a work in progress</span>
+            </button>
+        </section>
+
+        <section class="community" id="community">
+            <div class="card-topline rotation-header">
+                <div class="rotation-controls">
+                    <button id="previous-engagement" type="button" aria-label="Previous engagement">←</button>
+                    <button id="next-engagement" type="button" aria-label="Next engagement">→</button>
+                </div>
+            </div>
+            <div class="rotation-stage">
+<article class="community-card question-card">
+
+                    <h3 id="question-text">what's the dumbest way you've ever died in a game?</h3>
+                    <p class="question-subtext" id="question-subtext">i'm sure there's a good story.</p>
+
+                    <form id="answer-form">
+                        <label class="sr-only" for="answer-input">your answer</label>
+                        <textarea id="answer-input" maxlength="300" rows="3"
+                            placeholder="your answer..." required></textarea>
+
+                        <div class="sharing-choice">
+                            <span class="sharing-title">who gets to see it?</span>
+                            <label>
+                                <input type="radio" name="sharing" value="public" checked>
+                                public — show in this browser’s feed
+                            </label>
+                            <label>
+                                <input type="radio" name="sharing" value="private">
+                                private — save on this browser only
+                            </label>
+                        </div>
+
+                        <div class="question-actions">
+                            <button type="submit" id="answer-submit">send answer</button>
+                            <button type="button" class="text-button" id="skip-question">skip →</button>
+                        </div>
+                        <p class="form-message" id="answer-message" aria-live="polite"></p>
+                    </form>
+                    <p class="tiny-note">answers are saved on this browser only.</p>
+                </article>
+<article class="community-card poll-card">
+                    <div class="card-topline">
+                        <span class="card-label">COMMUNITY VOTE</span>
+                        <span class="poll-status" id="poll-status">OPEN</span>
+                    </div>
+
+                    <h3>what movement mechanic should i mess around with next?</h3>
+                    <form id="poll-form">
+                        <div class="poll-options" id="poll-options">
+                            <label class="poll-option">
+                                <input type="radio" name="poll" value="wallrun">
+                                <span>wall running</span>
+                            </label>
+                            <label class="poll-option">
+                                <input type="radio" name="poll" value="grapple">
+                                <span>grappling hook</span>
+                            </label>
+                            <label class="poll-option">
+                                <input type="radio" name="poll" value="slide">
+                                <span>sliding / diving</span>
+                            </label>
+                            <label class="poll-option">
+                                <input type="radio" name="poll" value="air">
+                                <span>better air control</span>
+                            </label>
+                        </div>
+                        <button type="submit" id="vote-button">cast my vote</button>
+                        <p class="form-message" id="poll-message" aria-live="polite"></p>
+                    </form>
+
+                    <div class="poll-results" id="poll-results" hidden>
+                        <div class="results-heading">
+                            <span>the results</span>
+                            <span id="vote-total">0 votes</span>
+                        </div>
+                        <div id="results-list"></div>
+                    </div>
+                    <p class="tiny-note">one vote per browser. results are demo numbers.</p>
+                </article>
+<article class="community-card voice-card" hidden>
+                    <p class="card-label">GET IN THE GAME</p>
+                    <h3>wanna be in the game?</h3>
+                    <p>record a scream, a stupid voice line, a death sound, whatever. maybe i'll put it in.</p>
+                    <label for="voice-file">pick an audio file</label>
+                    <input id="voice-file" type="file" accept="audio/*">
+                    <audio id="voice-preview" controls hidden></audio>
+                    <p class="tiny-note">preview only for now. nothing is uploaded or sent.</p>
+                </article>
+            </div>
+            <div class="rotation-track"><div id="rotation-progress"></div></div>
+        </section>
+        <section class="devlog"><article class="feature-card">
+                <p class="eyebrow">DEVELOPMENT</p>
+                <h2>latest stuff</h2>
+                <h3 id="latest-title"></h3>
+                <p id="latest-date" class="log-meta"></p>
+                <p id="latest-summary"></p>
+                <a href="devlog.html">see what i've been up to →</a>
+            </article></section>
+        <div class="answers-section">
+                <div class="answers-heading">
+                    <div>
+                        <p class="eyebrow">LOCAL ANSWERS</p>
+                        <h3>people are saying</h3>
+                    </div>
+                    <span id="answer-total" class="answer-total">0 answers</span>
+                </div>
+                <div id="community-answers" class="community-answers">
+                    <p class="empty-answers">nothing here yet. you could be first.</p>
+                </div>
+            </div>    </main>
+
+    <footer>
+        <p>made by someone, somewhere.</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="devlogs.js"></script>
+    <script src="devlog.js"></script>
+</body>
+</html>
