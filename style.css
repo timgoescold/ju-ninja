@@ -98,6 +98,8 @@ main
 
 .download-button
 {
+    text-decoration: none;
+    box-sizing: border-box;
     display: block;
     width: 100%;
     margin: 8px 0 0;
