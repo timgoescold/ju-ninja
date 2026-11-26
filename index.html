@@ -31,7 +31,8 @@
             </a>
         </section>
 
-        <section class="community" id="community">
+        <p id="community-loading" class="form-message">loading community stuff...</p>
+        <section class="community" id="community" hidden>
             <div class="card-topline rotation-header">
                 <div class="rotation-controls">
                     <button id="previous-engagement" type="button" aria-label="Previous engagement">←</button>
@@ -53,11 +54,11 @@
                             <span class="sharing-title">who gets to see it?</span>
                             <label>
                                 <input type="radio" name="sharing" value="public" checked>
-                                public — show in this browser’s feed
+                                public — show after review
                             </label>
                             <label>
                                 <input type="radio" name="sharing" value="private">
-                                private — save on this browser only
+                                private — only the developer can review it
                             </label>
                         </div>
 
@@ -67,7 +68,7 @@
                         </div>
                         <p class="form-message" id="answer-message" aria-live="polite"></p>
                     </form>
-                    <p class="tiny-note">answers are saved on this browser only.</p>
+                    <p class="tiny-note">public answers are reviewed before appearing.</p>
                 </article>
 <article class="community-card poll-card">
                     <div class="card-topline">
@@ -75,7 +76,8 @@
                         <span class="poll-status" id="poll-status">OPEN</span>
                     </div>
 
-                    <h3>what movement mechanic should i mess around with next?</h3>
+                    <h3 id="poll-title">what movement mechanic should i mess around with next?</h3>
+                    <p class="question-subtext" id="poll-subtext"></p>
                     <form id="poll-form">
                         <div class="poll-options" id="poll-options">
                             <label class="poll-option">
@@ -106,19 +108,31 @@
                         </div>
                         <div id="results-list"></div>
                     </div>
-                    <p class="tiny-note">one vote per browser. results are demo numbers.</p>
+                    <p class="tiny-note">one vote per browser identity.</p>
                 </article>
 <article class="community-card voice-card" hidden>
                     <p class="card-label">GET IN THE GAME</p>
-                    <h3>wanna be in the game?</h3>
-                    <p>record a scream, a stupid voice line, a death sound, whatever. maybe i'll put it in.</p>
-                    <label for="voice-file">pick an audio file</label>
-                    <input id="voice-file" type="file" accept="audio/*">
+                    <h3 id="voice-title">wanna be in the game?</h3>
+                    <p id="voice-subtext">record a scream, a stupid voice line, a death sound, whatever. maybe i'll put it in.</p>
+                    <div class="recorder">
+                        <canvas id="voice-wave" width="600" height="80" aria-hidden="true"></canvas>
+                        <div id="voice-timer">00:00 / 00:30</div>
+                        <button id="voice-record" type="button">● record</button>
+                        <button id="voice-clear" type="button" class="text-button" hidden>discard recording</button>
+                        <p class="tiny-note">click to make some questionable noises</p>
+                    </div>
+                    <label for="voice-file">or upload something you've already recorded</label>
+                    <input id="voice-file" type="file" accept="audio/webm,audio/ogg,audio/mp4,audio/x-m4a,audio/mpeg,audio/wav,audio/x-wav,audio/aac,.webm,.ogg,.m4a,.mp3,.wav,.aac">
                     <audio id="voice-preview" controls hidden></audio>
-                    <p class="tiny-note">preview only for now. nothing is uploaded or sent.</p>
+                    <label><input type="checkbox" id="voice-consent"> i’m 18 or older, made this recording, and agree to the <a href="privacy.html#voice" target="_blank" rel="noopener">recording terms</a>.</label><button id="voice-send" type="button">send it</button><p id="voice-message" class="form-message" aria-live="polite"></p><p class="tiny-note">max 30 seconds / 2 MB. uploads are private. selected recordings may appear in the game.</p>
                 </article>
             </div>
             <div class="rotation-track"><div id="rotation-progress"></div></div>
+        </section>
+        <section id="community-stats" class="community-stats" hidden>
+            <h3>people are actually doing stuff.</h3>
+            <div class="stats-grid"><div><strong id="stats-votes"></strong><span>questionable votes</span></div><div><strong id="stats-answers"></strong><span>things people said</span></div><div><strong id="stats-voices"></strong><span>weird noises</span></div></div>
+            <p id="stats-total"></p>
         </section>
         <section class="devlog"><article class="feature-card">
                 <p class="eyebrow">DEVELOPMENT</p>
@@ -128,10 +142,10 @@
                 <p id="latest-summary"></p>
                 <a href="devlog.html">see what i've been up to →</a>
             </article></section>
-        <div class="answers-section">
+        <div class="answers-section" hidden>
                 <div class="answers-heading">
                     <div>
-                        <p class="eyebrow">LOCAL ANSWERS</p>
+                        <p class="eyebrow">COMMUNITY ANSWERS</p>
                         <h3>people are saying</h3>
                     </div>
                     <span id="answer-total" class="answer-total">0 answers</span>
@@ -142,9 +156,20 @@
             </div>    </main>
 
     <footer>
-        <p>made by someone, somewhere.</p>
+        <p>made by someone, somewhere. · <a href="privacy.html">privacy & recording terms</a></p>
     </footer>
 
+    <div id="human-check" hidden role="dialog" aria-modal="true" aria-labelledby="human-title">
+        <div class="human-panel">
+            <h2 id="human-title">you human?</h2>
+            <p>just making sure the robots aren't taking over.</p>
+            <div id="human-widget"></div>
+            <button type="button" id="human-cancel">cancel</button>
+        </div>
+    </div>
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase.js"></script>
     <script src="script.js"></script>
     <script src="devlogs.js"></script>
     <script src="devlog.js"></script>
