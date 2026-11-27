@@ -686,8 +686,8 @@ footer
 /* Community statistics and touch controls */
 .community-stats { background:#111; border:1px solid #292929; border-radius:12px; padding:16px; margin:0 0 20px; }
 .community-stats h3 { margin:0 0 16px; font-size:18px; }
-.stats-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; text-align:center; }
-.stats-grid strong { display:block; color:#D52A49; font-size:clamp(20px,4vw,30px); overflow-wrap:anywhere; }
+.stats-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:4px; text-align:center; }
+.stats-grid strong { display:block; color:#D52A49; font-size:clamp(16px,4vw,30px); overflow-wrap:anywhere; }
 .stats-grid span, #stats-total { color:#aaa; font-size:12px; overflow-wrap:anywhere; }
 #stats-total { text-align:center; border-top:1px solid #333; padding-top:12px; margin-bottom:0; }
 #voice-wave, #voice-preview { max-width:100%; }
@@ -715,3 +715,5 @@ footer
 .policy-page h2 { margin: 30px 0 8px; font-size: 1.25rem; }
 .policy-page p { margin: 0 0 16px; }
 .policy-page a, footer a, .voice-card a { color: inherit; text-decoration: underline; }
+
+@media (max-width:420px) { .stats-grid span { font-size:10px; } .community-stats { padding:12px; } }

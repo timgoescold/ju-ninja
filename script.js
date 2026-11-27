@@ -19,7 +19,11 @@ function errorMessage(e, table) {
     if(e.code==='captcha_failed')return 'verification failed. try again.';
     return e.code==='23505'?"you've already had your say on this one.":(!navigator.onLine||e instanceof TypeError)?'the internet is being difficult. try again.':'something broke. try again in a bit.';
 }
+async function downloadStats() {
+    try { const url=document.querySelector('.download-button').href; if(!url.endsWith('/download'))return; const response=await fetch(url.replace(/\/download$/,'/stats'),{cache:'no-store'}); if(!response.ok)throw new Error('download stats unavailable'); const data=await response.json(); if(!Number.isSafeInteger(data.downloads)||data.downloads<0)throw new Error('invalid count'); message('stats-downloads',data.downloads.toLocaleString()); } catch(e){console.error(e);}
+}
 async function stats() {
+    downloadStats();
     try { const [r]=await queryResult(backend.rpc('get_community_stats')); const counts=[r.vote_count,r.answer_count,r.voice_count].map(Number); ['votes','answers','voices'].forEach((k,i)=>message('stats-'+k,counts[i].toLocaleString())); message('stats-total',counts.reduce((a,b)=>a+b,0).toLocaleString()+' contributions to this mess so far.'); el('community-stats').hidden=false; } catch(e){console.error(e);}
 }
 function controls() {
@@ -41,6 +45,7 @@ async function feed() {
     for (const row of rows) { const a=document.createElement('article'); a.className='answer-item'; const p=document.createElement('p'), s=document.createElement('span'); p.textContent=row.answer_text; s.textContent=row.question_text; a.append(p,s); list.append(a); }
 }
 async function results(q) {
+    if(!completed.has(q.id)||current()!==q)return;
     const rows = await queryResult(backend.rpc('get_poll_results',{poll_id:q.id}));
     const total = rows.reduce((n,r)=>n+Number(r.vote_count),0);
     if(current()!==q) return;
@@ -62,7 +67,7 @@ async function show() {
     if(q.question_type==='poll') {
         message('poll-title',q.question_text); message('poll-subtext',q.subtext||''); message('poll-message',completed.has(q.id)?"you've already had your say on this one.":''); message('poll-status',completed.has(q.id)?'ALREADY VOTED':'OPEN'); el('poll-results').hidden=true; el('poll-options').replaceChildren();
         for(const option of q.options) { const label=document.createElement('label'); label.className='poll-option'; const input=document.createElement('input'); input.type='radio'; input.name='poll'; input.value=option.id; const span=document.createElement('span'); span.textContent=option.option_text; label.append(input,span); el('poll-options').append(label); }
-        controls(); try { await results(q); } catch(e) { console.error(e); if(current()===q) message('poll-message','could not load results.'); }
+        controls(); if(completed.has(q.id)) try { await results(q); } catch(e) { console.error(e); if(current()===q) message('poll-message','could not load results.'); }
     }
     if(current()===q)controls();
 }
@@ -78,7 +83,7 @@ async function submit(table, values, id) {
     finally { lock(false); }
 }
 el('answer-form').onsubmit=async e=>{e.preventDefault(); if(busy||completed.has(current()?.id))return; const q=current(), text=el('answer-input').value.trim(); if(!text)return; if(await submit('answers',{question_id:q.id,answer_text:text,visibility:document.querySelector('input[name="sharing"]:checked').value},'answer-message')) { completed.add(q.id); drafts.delete(q.id); el('answer-input').value=''; }};
-el('poll-form').onsubmit=async e=>{e.preventDefault(); if(busy||completed.has(current()?.id))return; const q=current(), selected=document.querySelector('input[name="poll"]:checked'); if(!selected){message('poll-message','pick one first.');return;} if(await submit('votes',{question_id:q.id,option_id:selected.value},'poll-message'))message('poll-status','ALREADY VOTED'); try{await results(q);}catch(e){console.error(e);}};
+el('poll-form').onsubmit=async e=>{e.preventDefault(); if(busy||completed.has(current()?.id))return; const q=current(), selected=document.querySelector('input[name="poll"]:checked'); if(!selected){message('poll-message','pick one first.');return;} await submit('votes',{question_id:q.id,option_id:selected.value},'poll-message'); if(current()===q&&completed.has(q.id))message('poll-status','ALREADY VOTED'); try{await results(q);}catch(e){console.error(e);}};
 let voiceFile, recordedDuration, recording = false, recorder, stream, context, frame, stopTimer, started;
 function drawWave(analyser) {
     const canvas = el('voice-wave'), ctx = canvas.getContext('2d');
